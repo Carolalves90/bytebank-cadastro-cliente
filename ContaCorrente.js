@@ -1,9 +1,25 @@
+import { Cliente } from "./cliente.js";
+
 export class ContaCorrente {
     agencia;
-    cliente;
+    _cliente;
+
+    set cliente(novoValor){
+        if(novoValor instanceof Cliente){
+            this._cliente = novoValor;
+        }
+    }
+
+    get cliente(){
+        return this._cliente;
+    }
 
     // #saldo = 0 https://github.com/tc39/proposal-class-fields#private-fields  Proposta de campos Privados.
     _saldo = 0;
+
+    get saldo(){
+        return this._saldo;
+    }
 
     sacar(valor) {
         if (this._saldo >= valor) {
